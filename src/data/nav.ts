@@ -23,9 +23,10 @@ export const footerGroups = [
   {
     title: "Foundation",
     links: [
-      { label: "Mission",    href: "/mission" },
-      { label: "About",      href: "/about" },
-      { label: "Contact",    href: "/contact" },
+      { label: "Mission",      href: "/mission" },
+      { label: "About",        href: "/about" },
+      { label: "Transparency", href: "/transparency" },
+      { label: "Contact",      href: "/contact" },
     ],
   },
   {

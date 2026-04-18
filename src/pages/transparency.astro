@@ -1,0 +1,163 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import StatusNotice from "../components/StatusNotice.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { reportingPeriod, governance, finances, activitiesToDate, forwardPlan } from "../data/transparency";
+
+const fmt = (n: number | string) => typeof n === "number" ? `US$${n.toLocaleString()}` : n;
+---
+<Base
+  title="Transparency — NORA Foundation"
+  description="Interim transparency report for NORA Foundation. Governance, activities to date, finances, and forward plan. A full annual report will follow the first complete fiscal year."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Transparency · Interim report"
+      as="h1"
+      title="What we have done, what we have spent, and where we are going."
+      lede="A full annual transparency report — with audited figures, governance disclosures, and program outcomes — will be published after the first complete fiscal year. This interim report is published in the same spirit: honest accounting of scope, including the parts that are not yet finished."
+    />
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-8">
+    <StatusNotice title="Reporting scope">
+      This is an <strong>interim</strong> disclosure covering the period from foundation formation ({reportingPeriod.start}) through {reportingPeriod.asOf}. NORA Foundation is pre-incorporation and pre-fiscal-sponsorship. Financial figures are self-reported and unaudited. No tax-deductibility is represented.
+    </StatusNotice>
+  </section>
+
+  <!-- GOVERNANCE -->
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Governance.</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Structure</div>
+        <p class="text-ink-700 leading-relaxed">{governance.structure}</p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Founder / sole principal</div>
+        <p class="text-ink-700 leading-relaxed">{governance.founder}</p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Fiscal sponsor</div>
+        <p class="text-ink-700 leading-relaxed">{governance.fiscalSponsor}</p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Conflicts of interest</div>
+        <p class="text-ink-700 leading-relaxed">{governance.conflictsOfInterest}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Activities to date.</h2>
+    <div class="border-t border-ink-200">
+      {activitiesToDate.map(a => (
+        <div class="grid md:grid-cols-[140px_1fr] gap-x-6 py-4 border-b border-ink-200">
+          <div class="font-mono text-sm text-ink-500">{a.date}</div>
+          <div class="text-ink-700 leading-relaxed">{a.activity}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FINANCES -->
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Finances.</h2>
+    <p class="text-ink-600 mb-10 max-w-2xl text-sm leading-relaxed">
+      Figures are rounded to the nearest US dollar and are self-reported pending the establishment of fiscal-sponsor bookkeeping. Once Open Collective or an equivalent public ledger is live, all inflows and outflows will be viewable line-by-line in real time.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+      <!-- Raised -->
+      <div class="bg-white p-6">
+        <h3 class="font-serif text-lg text-ink-800 mb-4">Raised</h3>
+        <dl class="space-y-3 text-sm">
+          {finances.raised.map(r => (
+            <div>
+              <dt class="text-ink-700">{r.source}</dt>
+              <dd class="font-mono text-cardinal-700 text-base mt-0.5">{fmt(r.amount)}</dd>
+              <dd class="text-xs text-ink-500 mt-1 leading-relaxed">{r.status}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <!-- Spent -->
+      <div class="bg-white p-6">
+        <h3 class="font-serif text-lg text-ink-800 mb-4">Spent</h3>
+        <dl class="space-y-3 text-sm">
+          {finances.spent.map(s => (
+            <div>
+              <dt class="text-ink-700">{s.category}</dt>
+              <dd class="font-mono text-cardinal-700 text-base mt-0.5">{fmt(s.amount)}</dd>
+              <dd class="text-xs text-ink-500 mt-1 leading-relaxed">{s.note}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <!-- Committed -->
+      <div class="bg-white p-6">
+        <h3 class="font-serif text-lg text-ink-800 mb-4">Committed / planned</h3>
+        <dl class="space-y-3 text-sm">
+          {finances.commitments.map(c => (
+            <div>
+              <dt class="text-ink-700">{c.category}</dt>
+              <dd class="font-mono text-cardinal-700 text-base mt-0.5">{fmt(c.amount)}</dd>
+              <dd class="text-xs text-ink-500 mt-1 leading-relaxed">{c.note}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+
+    <div class="mt-6 text-xs text-ink-500 max-w-3xl leading-relaxed">
+      <strong class="text-ink-700">Notes on figures.</strong> All founder labor to date is uncompensated and not valued on this ledger. Any in-kind donations (software licences, cloud credits, pro-bono legal or accounting work) will be listed separately in the first full annual report. NORA does not presently have a bank account; institutional donors should route through a fiscal sponsor — please contact <a class="link-subtle" href="mailto:grants@norafoundation.io">grants@norafoundation.io</a>.
+    </div>
+  </section>
+
+  <!-- FORWARD PLAN -->
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Forward plan.</h2>
+    <div class="grid md:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+      {forwardPlan.map(p => (
+        <div class="bg-white p-6">
+          <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-4">{p.horizon}</div>
+          <ul class="space-y-2 text-sm text-ink-700">
+            {p.items.map(item => (
+              <li class="flex gap-2">
+                <span class="text-cardinal-600 font-mono shrink-0">▸</span>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- METHODOLOGY + LIMITS -->
+  <section class="mx-auto max-w-4xl px-6 py-12">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">What this report does not cover.</h2>
+    <div class="space-y-4 text-ink-700 leading-relaxed">
+      <p>
+        This is an interim disclosure, not an annual report. It is not audited. It does not include IRS Form 990 data because NORA is pre-501(c)(3). It does not include salary or compensation disclosures because no one is compensated. It does not include in-kind valuations of founder labor, pro-bono contributions, or open-source dependencies that underpin the work.
+      </p>
+      <p>
+        Once fiscal sponsorship is in place, the applicable host's public ledger (typically Open Collective) will carry real-time transaction-level transparency. Once a full fiscal year closes, a formal annual report will replace this interim disclosure and will include: program outcomes, program-expense ratio, fundraising-expense ratio, named board members and officers, conflict-of-interest disclosures, and — if scale warrants — independent financial review or audit.
+      </p>
+      <p>
+        If you are a grantmaker, regulator, journalist, or researcher requesting additional documentation not listed here, please write to <a class="link-subtle" href="mailto:grants@norafoundation.io">grants@norafoundation.io</a>. We will respond promptly.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Support work that shows its work."
+    body="Transparency is one of NORA's constitutional commitments. Your support helps us build both the standard and the operational practices that make it credible."
+    primary={{ href: "/donate", label: "Support the foundation →" }}
+    secondary={{ href: "/mission", label: "Read the mission" }}
+  />
+</Base>
