@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const channels = [
+  { scope: "General inquiries", email: "hello@norafoundation.io", note: "Anything that does not fit a specialized mailbox below." },
+  { scope: "Grants and institutional funding", email: "grants@norafoundation.io", note: "Foundations, labs, corporate philanthropy, structured multi-year support." },
+  { scope: "Partnerships", email: "partners@norafoundation.io", note: "Pilot deployments, co-developed challenge vocabularies, research collaborations." },
+  { scope: "Press and research", email: "press@norafoundation.io", note: "Journalists, academic researchers, standards-body observers." },
+  { scope: "Volunteer interest", email: "volunteer@norafoundation.io", note: "Non-code contribution pathways." },
+  { scope: "Security", email: "security@norafoundation.io", note: "Responsible-disclosure reports on the specification or reference implementation. Coordinated disclosure welcomed and credited." },
+];
+---
+<Base
+  title="Contact — NORA Foundation"
+  description="Contact NORA Foundation — general inquiries, grants, partnerships, press, volunteer interest, and security disclosures."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Contact"
+      as="h1"
+      title="Reach the right mailbox."
+      lede="We route inquiries to specialized mailboxes so responses are timely and accurate. Use the address below that best fits your question — or write to the general inbox if unsure."
+    />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="grid md:grid-cols-2 gap-px bg-ink-200 border border-ink-200">
+      {channels.map(c => (
+        <div class="bg-white p-7">
+          <div class="font-serif text-lg text-ink-800 mb-2">{c.scope}</div>
+          <a class="font-mono text-sm text-cardinal-700 hover:text-cardinal-800" href={`mailto:${c.email}`}>{c.email}</a>
+          <p class="text-sm text-ink-600 leading-relaxed mt-3">{c.note}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-sm text-ink-500 max-w-2xl leading-relaxed">
+      <strong class="text-ink-700">Response times.</strong> We aim to respond to every inquiry within seven business days. Funder and press inquiries typically receive a faster initial acknowledgement. Security reports are triaged the same day.
+    </div>
+  </section>
+</Base>

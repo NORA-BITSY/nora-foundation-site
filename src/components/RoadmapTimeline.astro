@@ -1,0 +1,23 @@
+---
+import { roadmap } from "../data/roadmap";
+---
+<div class="border-t border-ink-200">
+  {roadmap.map(it => (
+    <div class="grid md:grid-cols-[110px_140px_1fr] gap-x-6 gap-y-2 py-6 border-b border-ink-200">
+      <div>
+        <span class={`inline-block px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider
+          ${it.tag === "shipped" ? "bg-cardinal-600 text-white" :
+            it.tag === "in progress" ? "bg-cardinal-100 text-cardinal-700" :
+            it.tag === "next" ? "bg-ink-100 text-ink-700" :
+            "bg-ink-50 text-ink-500 border border-ink-200"}`}>
+          {it.tag}
+        </span>
+      </div>
+      <div class="font-mono text-sm text-ink-500 pt-0.5">{it.date}</div>
+      <div>
+        <div class="font-serif text-lg text-ink-800">{it.title}</div>
+        <div class="text-ink-600 mt-1 text-sm leading-relaxed">{it.note}</div>
+      </div>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { partnerTypes } from "../data/partners";
+---
+<Base
+  title="Partners — NORA Foundation"
+  description="Partner with NORA Foundation on public-interest infrastructure for verifiable reasoning: legal tech, journalism, research, civic tech, audit, and institutional funding."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Partners"
+      as="h1"
+      title="Build the ecosystem with us."
+      lede="Verifiability is an ecosystem property. NORA writes the specification and builds the reference implementation, but adoption, adversarial review, and domain-specific extensions happen with partners who bring field expertise, user bases, and institutional standing."
+    />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">Who we partner with.</h2>
+    <p class="text-ink-600 mb-10 max-w-3xl">Partnership modes range from pilot deployments and co-authored publications to structured multi-year funding. We can tailor modes to each partner's posture and constraints.</p>
+
+    <div class="grid md:grid-cols-2 gap-px bg-ink-200 border border-ink-200">
+      {partnerTypes.map(p => (
+        <div class="bg-white p-7">
+          <h3 class="font-serif text-xl text-ink-800 mb-3">{p.audience}</h3>
+          <p class="text-sm text-ink-600 leading-relaxed">{p.summary}</p>
+          <div class="mt-5 font-mono text-xs text-cardinal-600 uppercase tracking-wider">Modes</div>
+          <div class="text-sm text-ink-700 mt-1">{p.modes}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-8">What a partnership might look like.</h2>
+
+    <div class="space-y-8 text-ink-700 leading-relaxed text-lg">
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Pilot deployments</div>
+        <p class="text-ink-600">
+          Meridian-Canon or a domain-specific derivative deployed against a partner's corpus, with shared evaluation criteria and a public report of what worked and what did not. Pilots are structured to produce reusable artifacts for the ecosystem.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Co-developed challenge vocabularies</div>
+        <p class="text-ink-600">
+          The Canon's refutation stage accepts domain-specific challenge types. A partner in journalism, law, or audit can co-author the vocabulary that becomes the reference for their field.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Research collaborations</div>
+        <p class="text-ink-600">
+          Joint publications, shared benchmarks, student research, external audits. NORA maintains small grants for independent adversarial review of the specification and reference implementation.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-2">Institutional funding</div>
+        <p class="text-ink-600">
+          Multi-year support for spec stewardship, verifier development, and ecosystem grants. We welcome conversations with program officers about how NORA fits into a foundation's responsible-AI or civic-infrastructure portfolio.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Start a partnership conversation."
+    body="Tell us about your field, your corpus, your constraints, and your audience. We will respond with a concrete proposal for what a collaboration could look like."
+    primary={{ href: "mailto:partners@norafoundation.io?subject=Partnership%20inquiry", label: "partners@norafoundation.io →" }}
+    secondary={{ href: "/donate", label: "Institutional funding" }}
+  />
+</Base>

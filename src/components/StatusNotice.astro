@@ -1,0 +1,16 @@
+---
+interface Props {
+  tone?: "info" | "caution";
+  title?: string;
+}
+const { tone = "info", title = "Status disclosure" } = Astro.props;
+---
+<aside class={`not-prose border-l-4 p-5 text-sm leading-relaxed
+  ${tone === "caution"
+    ? "bg-cardinal-50 border-cardinal-600 text-cardinal-800"
+    : "bg-ink-50 border-ink-300 text-ink-700"}`}
+  role="note"
+>
+  <div class="font-mono text-xs uppercase tracking-wider mb-2 opacity-80">{title}</div>
+  <slot />
+</aside>

@@ -1,0 +1,90 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import StatusNotice from "../components/StatusNotice.astro";
+import FaqAccordion from "../components/FaqAccordion.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { supportChannels, fundingAreas } from "../data/support";
+
+const live = supportChannels.filter(c => c.live);
+const comingSoon = supportChannels.filter(c => !c.live);
+---
+<Base
+  title="Donate — Support NORA Foundation"
+  description="Support NORA Foundation. Funds the Canon specification, Meridian-Canon reference implementation, verifier tooling, adversarial review, and ecosystem development."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Support the foundation"
+      as="h1"
+      title="Fund the infrastructure. Fund the ecosystem."
+      lede="NORA is a multi-year public-interest commitment. Donations underwrite the open standard, the reference implementation, the external verifier ecosystem, and the adversarial review that keeps all three honest."
+    />
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-8">
+    <StatusNotice title="Fiscal-sponsorship status">
+      NORA Foundation is pursuing fiscal sponsorship with a 501(c)(3) host to enable tax-deductible giving. <strong>Until that is finalized in writing, we do not represent donations as tax-deductible.</strong> Institutional and grant donors: please <a class="underline" href="mailto:grants@norafoundation.io">contact us directly</a> so we can route through an appropriate fiscal host.
+    </StatusNotice>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">How to give.</h2>
+    <p class="text-ink-600 mb-10 max-w-2xl">
+      We publish only channels that are live. Additional options will appear here as our fiscal infrastructure is finalized.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-px bg-ink-200 border border-ink-200">
+      {live.map(c => (
+        <div class="bg-white p-8 flex flex-col">
+          <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">{c.cadence}</div>
+          <h3 class="font-serif text-xl text-ink-800 mb-3">{c.label}</h3>
+          <p class="text-sm text-ink-600 leading-relaxed flex-1">{c.summary}</p>
+          <a class="btn btn-primary mt-6 self-start" href={c.href} target={c.href?.startsWith("http") ? "_blank" : undefined} rel="noopener">
+            {c.label === "Institutional funding" ? "Contact us" : "Give →"}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    {comingSoon.length > 0 && (
+      <div class="mt-8 p-6 border border-dashed border-ink-300 bg-ink-50">
+        <div class="font-mono text-xs text-ink-500 uppercase tracking-wider mb-3">Coming soon</div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {comingSoon.map(c => (
+            <div>
+              <div class="font-serif text-lg text-ink-700">{c.label}</div>
+              <div class="text-sm text-ink-500 mt-1 leading-relaxed">{c.summary}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">What your support funds.</h2>
+    <p class="text-ink-600 mb-10 max-w-2xl">Every category of support is traceable to a category of work.</p>
+
+    <div class="grid md:grid-cols-2 gap-x-10 gap-y-8">
+      {fundingAreas.map(f => (
+        <div class="border-l-2 border-cardinal-200 pl-5">
+          <div class="font-serif text-lg text-ink-800 mb-2">{f.area}</div>
+          <p class="text-sm text-ink-600 leading-relaxed">{f.detail}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-8">Donor questions.</h2>
+    <FaqAccordion />
+  </section>
+
+  <CtaBand
+    title="Institutional funding inquiries."
+    body="Foundations, labs, and corporate philanthropy programs evaluating multi-year support: we welcome structured conversations about programmatic alignment, fiscal-host routing, and reporting cadence."
+    primary={{ href: "mailto:grants@norafoundation.io?subject=NORA%20Foundation%20%E2%80%94%20Institutional%20inquiry", label: "grants@norafoundation.io →" }}
+    secondary={{ href: "/partners", label: "Partnership options" }}
+  />
+</Base>

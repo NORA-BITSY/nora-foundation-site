@@ -1,0 +1,49 @@
+---
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+
+const stages = [
+  {
+    letter: "W",
+    name: "Witness",
+    tagline: "What was observed",
+    short: "Hashed observations with optional custody chain.",
+    detail: "Each observation carries a SHA-256 content hash. Retrievable inline or by reference. Re-hashing retrieved content must reproduce the declared hash.",
+  },
+  {
+    letter: "F",
+    name: "Findings",
+    tagline: "What was concluded",
+    short: "Typed claims with explicit supports and acknowledged gaps.",
+    detail: "Each claim declares its inference type — observation, deduction, induction, abduction, or compound — lists its supports, and enumerates its acknowledged gaps.",
+  },
+  {
+    letter: "R",
+    name: "Refutation",
+    tagline: "What was challenged",
+    short: "Challenges applied, outcomes recorded, and a machine-readable inventory of challenges declined.",
+    detail: "The inventory of what was not attacked is required, not optional. Canon makes honest accounting of scope a first-class element.",
+  },
+  {
+    letter: "S",
+    name: "Seal",
+    tagline: "What was bound",
+    short: "Ed25519 signature over the canonical serialization. Verifiable without the issuer.",
+    detail: "RFC 8785 canonicalization, SHA-256 chain-hash, Ed25519 signature, publicly retrievable key. Any recipient can verify end-to-end.",
+  },
+];
+---
+<div class={`grid ${compact ? "md:grid-cols-4" : "md:grid-cols-4"} gap-px bg-ink-200 border border-ink-200`}>
+  {stages.map(s => (
+    <div class={`bg-white ${compact ? "p-6" : "p-7"}`}>
+      <div class="flex items-baseline gap-3 mb-3">
+        <span class="font-serif text-5xl text-cardinal-600 leading-none">{s.letter}</span>
+        <span class="font-serif text-xl text-ink-800">{s.name}</span>
+      </div>
+      <div class="font-mono text-xs text-ink-500 uppercase tracking-wider mb-4">{s.tagline}</div>
+      <p class="text-sm text-ink-600 leading-relaxed">{compact ? s.short : s.detail}</p>
+    </div>
+  ))}
+</div>

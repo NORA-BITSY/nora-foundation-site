@@ -1,0 +1,101 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import RoadmapTimeline from "../components/RoadmapTimeline.astro";
+import CtaBand from "../components/CtaBand.astro";
+---
+<Base
+  title="Meridian-Canon — Reference implementation of Canon"
+  description="Meridian-Canon is the NORA Foundation's reference implementation of the Canon standard: Canon-conformant ingest, enrichment, refutation, retrieval, and attestation over large heterogeneous archives."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Reference implementation"
+      as="h1"
+      title="Meridian-Canon."
+      lede="A Canon-conformant system for large, heterogeneous archives where retrieval, interpretation, and provenance must all be auditable. First developed under a demanding real-world archival and evidentiary workload; architected from the outset to generalize."
+    />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="grid md:grid-cols-[1.4fr_1fr] gap-12">
+      <div class="space-y-6 text-ink-700 leading-relaxed text-lg">
+        <p>
+          Meridian-Canon ingests heterogeneous source archives — communications, documents, recordings, structured records — into a single database with cryptographic content hashes and an append-only chain of custody. Every document becomes a sealed <code>ObservationAttestation</code> the moment it is received.
+        </p>
+        <p>
+          A local language model then extracts structured claims per document: senders and recipients resolved to canonical identities, topics and entities, referenced dates and amounts, document kind, intent, and explicit acknowledgements of the extractor's own gaps. Each claim carries an <em class="not-italic text-ink-800">inference type</em> — observation, deduction, induction, abduction, or compound — committing the issuer to the epistemic status of the claim.
+        </p>
+        <p>
+          A five-stage adversarial harness then challenges every claim. A second, independent language model attempts refutation. The entity graph is cross-checked for contradictions. A coverage audit enumerates which sub-populations of the corpus received no enrichment and why. Counter-evidence is actively sought in the corpus itself. The extraction is replayed for consistency. Only after refutation completes is the <code>EnrichmentAttestation</code> sealed.
+        </p>
+        <p>
+          At query time, every natural-language question produces a sealed <code>SearchAttestation</code> documenting the query, the retrieved witness identifiers, the ranking rationale with explicit gap disclosure, the consistency and coverage challenges applied, and the challenges declined with machine-readable reasons. When a broader product is assembled — a legal brief, an investigative report, an audit finding — the composite <code>BriefAttestation</code> binds every prior artifact into one self-verifying chain.
+        </p>
+      </div>
+      <aside class="bg-ink-50 border border-ink-200 p-6 h-fit">
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-4">At a glance</div>
+        <dl class="space-y-4 text-sm">
+          <div>
+            <dt class="font-mono text-xs text-ink-400 uppercase">Target scale</dt>
+            <dd class="text-ink-700 mt-1">10<sup>5</sup>–10<sup>6</sup> documents per archive</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-ink-400 uppercase">Storage</dt>
+            <dd class="text-ink-700 mt-1">Single SQLite file · portable · content-addressable blob store</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-ink-400 uppercase">Retrieval</dt>
+            <dd class="text-ink-700 mt-1">Hybrid BM25 + dense (nomic-embed-text-v1.5) · RRF fusion · cross-encoder re-rank</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-ink-400 uppercase">Language model</dt>
+            <dd class="text-ink-700 mt-1">Local · qwen2.5-7b class · vLLM serving · no cloud API required</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-xs text-ink-400 uppercase">Cryptography</dt>
+            <dd class="text-ink-700 mt-1">Ed25519 · RFC 8785 canonicalization · SHA-256 content hashing</dd>
+          </div>
+          <div class="pt-4 border-t border-ink-200">
+            <a class="btn w-full justify-center !py-2" href="/meridian-canon-executive-summary.pdf">Executive summary (PDF)</a>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">Where Meridian-Canon applies.</h2>
+    <p class="text-ink-600 mb-10 max-w-3xl">
+      The reference implementation was developed under a demanding real-world corpus. Its architecture was designed from the beginning to address a broader class of problem: any context where an archive must be searched, interpreted, and synthesized under review by a party other than the system producing the output.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+      {[
+        { t: "Legal review and evidence preparation", d: "Large discovery productions, custody-bound source archives, and adversarial motion practice. Every cited claim traces to a Bates-stamped observation; every ranking decision is auditable." },
+        { t: "Investigative journalism", d: "Newsroom source archives where provenance of every finding is required for publication standards and legal defensibility." },
+        { t: "Academic and research archives", d: "Private corpora where reproducibility and citation integrity govern what can be published." },
+        { t: "Compliance, audit, and regulatory review", d: "Institutional record sets where automated findings must be defensible to external auditors and regulators." },
+        { t: "FOIA and transparency work", d: "Large record productions where advocates must demonstrate both what was found and what was deliberately examined and excluded." },
+        { t: "Personal and institutional archives", d: "Records-intensive knowledge work where users must trust their own retrieval tools under the pressure of external review." },
+      ].map(x => (
+        <div class="bg-white p-6">
+          <div class="font-serif text-lg text-ink-800 mb-2">{x.t}</div>
+          <p class="text-sm text-ink-600 leading-relaxed">{x.d}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="roadmap" class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-10">Roadmap.</h2>
+    <RoadmapTimeline />
+  </section>
+
+  <CtaBand
+    title="Reference implementations need more than one implementer."
+    body="If the ecosystem only contains NORA's reference, the specification is brittle. We actively seek contributors, verifier authors in new languages, and pilot partners across the use-case classes above."
+    primary={{ href: "/contribute", label: "Contribute →" }}
+    secondary={{ href: "/partners", label: "Partner with us" }}
+  />
+</Base>

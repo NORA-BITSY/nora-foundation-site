@@ -1,0 +1,87 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PrincipleBlock from "../components/PrincipleBlock.astro";
+import CtaBand from "../components/CtaBand.astro";
+---
+<Base
+  title="Mission — NORA Foundation"
+  description="NORA Foundation builds public-interest infrastructure for verifiable reasoning: an open standard, a reference implementation, and an ecosystem of independent verifiers."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Mission"
+      as="h1"
+      title="Public-interest infrastructure for verifiable reasoning."
+      lede="AI systems increasingly produce reasoning artifacts — retrievals, summaries, findings, synthesized briefs — that recipients are asked to rely on without any means of auditing independently. NORA Foundation exists to close that gap in the open."
+    />
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-10 space-y-8 text-lg text-ink-700 leading-relaxed">
+    <p>
+      The mission is not a product. It is an infrastructure commitment. We publish the standard under CC0. We build the reference implementation in the open. We fund outside verifiers. We invite adoption across every field where independently-checkable reasoning matters: law, journalism, research, audit, archives, public records.
+    </p>
+
+    <p>
+      Our work was forged in a demanding real-world evidentiary context — a setting where retrieval and interpretation of a large, heterogeneous archive had to withstand adversarial review by parties with no reason to cooperate with the system producing the outputs. That context was the proving ground. What emerged was a general problem, not a single-case tool.
+    </p>
+
+    <PrincipleBlock
+      principle="Verifiability is only meaningful when the recipient does not need to trust the issuer."
+      source="Founding principle"
+    />
+
+    <p>
+      A specification only matters if any party can implement it. A reference implementation only matters if it is one of several. A verifier only matters if anyone can write one. Canon is therefore published in the public domain, built by reference implementation, and surrounded by ecosystem tooling NORA actively seeds but does not control.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-10">What we hold ourselves to.</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Public-domain specification</div>
+        <p class="text-ink-600 leading-relaxed">
+          Canon is dedicated to the public domain under CC0. No licensing negotiation required. No permission required to build an issuer or verifier. The specification belongs to everyone.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Implementation neutrality</div>
+        <p class="text-ink-600 leading-relaxed">
+          Canon defines the artifact and the falsification protocol — not the internal operations of any stage. Competing implementations are structurally on equal footing with NORA's own.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Falsifiability without cooperation</div>
+        <p class="text-ink-600 leading-relaxed">
+          The defining guarantee of a Canon attestation is that a recipient, using only the artifact and ordinary network access, can verify or falsify it without any cooperation from the issuer.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Honest accounting</div>
+        <p class="text-ink-600 leading-relaxed">
+          Every attestation must enumerate not only the challenges it survived but the challenges it declined, with machine-readable reasons. Honest accounting of scope is a first-class element of the standard.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Adversarial review</div>
+        <p class="text-ink-600 leading-relaxed">
+          We invite and fund external review of the specification, the reference implementation, and the cryptographic chain. Every attempted refutation makes the work stronger.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Honest status</div>
+        <p class="text-ink-600 leading-relaxed">
+          We publish roadmaps and status truthfully. The specification is draft-rfc. The implementation is under active construction. Fiscal sponsorship is in progress. We do not imply more than is true.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Support open infrastructure for verifiable AI."
+    body="Canon, Meridian-Canon, and the verifier ecosystem are a multi-year commitment. Donor and partner support makes that commitment possible."
+    primary={{ href: "/donate", label: "Support the mission →" }}
+    secondary={{ href: "/about", label: "About the foundation" }}
+  />
+</Base>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="6" fill="#8C1515"/>
+  <text x="80" y="110" font-family="Georgia, serif" font-size="26" fill="#8C1515" letter-spacing="4">NORA FOUNDATION</text>
+  <text x="80" y="280" font-family="Georgia, serif" font-size="76" font-weight="700" fill="#0f0f0e">Verifiable reasoning.</text>
+  <text x="80" y="370" font-family="Georgia, serif" font-size="76" font-weight="700" fill="#8C1515">Public infrastructure.</text>
+  <text x="80" y="470" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#525250">Canon — the public standard for attestations any recipient</text>
+  <text x="80" y="510" font-family="Inter, system-ui, sans-serif" font-size="28" fill="#525250">can falsify without the issuer's cooperation.</text>
+  <g font-family="JetBrains Mono, monospace" font-size="18" fill="#8C1515" letter-spacing="3">
+    <text x="80"  y="580">WITNESS</text>
+    <text x="320" y="580">FINDINGS</text>
+    <text x="580" y="580">REFUTATION</text>
+    <text x="870" y="580">SEAL</text>
+  </g>
+  <line x1="80" y1="600" x2="1120" y2="600" stroke="#d9d9d4" stroke-width="1"/>
+  <text x="80" y="620" font-family="JetBrains Mono, monospace" font-size="12" fill="#b8b8b0" letter-spacing="2">CANON v0.1.0 · CC0 1.0 UNIVERSAL · norafoundation.io</text>
+</svg>

@@ -1,40 +1,44 @@
 ---
+import { footerGroups } from "../data/nav";
+const year = new Date().getFullYear();
 ---
-<footer class="border-t border-ink-200">
-  <div class="mx-auto max-w-6xl px-6 py-12 grid md:grid-cols-4 gap-8 text-sm">
-    <div class="md:col-span-2">
-      <div class="font-serif text-xl text-cardinal-600 mb-2">NORA Foundation</div>
-      <p class="text-ink-600 max-w-md leading-relaxed">
-        Publishing Canon — the public specification for attestations any recipient can falsify without the issuer's cooperation.
+<footer class="border-t border-ink-200 bg-white">
+  <div class="mx-auto max-w-6xl px-6 py-16 grid md:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] gap-10">
+    <div>
+      <div class="flex items-baseline gap-2">
+        <span class="font-serif text-2xl text-cardinal-600 font-semibold">N</span>
+        <span class="font-serif text-lg text-ink-800">NORA Foundation</span>
+      </div>
+      <p class="mt-4 text-sm text-ink-600 leading-relaxed max-w-sm">
+        Public-interest infrastructure for verifiable reasoning. Publisher and steward of Canon — an open standard for attestations any recipient can falsify without the issuer's cooperation.
       </p>
     </div>
 
-    <div>
-      <div class="font-mono text-xs text-ink-400 uppercase tracking-wider mb-3">Project</div>
-      <ul class="space-y-2 text-ink-700">
-        <li><a class="link-subtle" href="https://github.com/NORA-BITSY/nora-canon" target="_blank" rel="noopener">Canon specification</a></li>
-        <li><a class="link-subtle" href="/meridian-canon-executive-summary.pdf">Meridian-Canon (PDF)</a></li>
-        <li><a class="link-subtle" href="https://github.com/NORA-BITSY" target="_blank" rel="noopener">GitHub · NORA-BITSY</a></li>
-      </ul>
-    </div>
-
-    <div>
-      <div class="font-mono text-xs text-ink-400 uppercase tracking-wider mb-3">Contact</div>
-      <ul class="space-y-2 text-ink-700">
-        <li><a class="link-subtle" href="mailto:hello@norafoundation.io">hello@norafoundation.io</a></li>
-        <li><a class="link-subtle" href="#contribute">Sponsor</a></li>
-      </ul>
-    </div>
+    {footerGroups.map(group => (
+      <div>
+        <div class="font-mono text-xs text-ink-400 uppercase tracking-wider mb-3">{group.title}</div>
+        <ul class="space-y-2 text-sm">
+          {group.links.map(link => (
+            <li>
+              <a
+                href={link.href}
+                class="link-subtle"
+                {...("external" in link && link.external ? { target: "_blank", rel: "noopener" } : {})}
+              >{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 
-  <div class="border-t border-ink-200">
-    <div class="mx-auto max-w-6xl px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs text-ink-500">
+  <div class="border-t border-ink-100">
+    <div class="mx-auto max-w-6xl px-6 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 text-xs text-ink-500">
       <div>
-        © 2026 NORA Foundation. Specification dedicated to the public domain under <a class="link-subtle" href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0 Universal</a>.
+        © {year} NORA Foundation. Specification and website content dedicated to the public domain under
+        <a class="link-subtle" href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0 1.0 Universal</a>.
       </div>
-      <div class="font-mono">
-        Canon v0.1.0 · draft-rfc
-      </div>
+      <div class="font-mono">Canon v0.1.0 · draft-rfc</div>
     </div>
   </div>
 </footer>

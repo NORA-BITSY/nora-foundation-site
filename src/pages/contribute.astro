@@ -1,0 +1,59 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { contributorTracks } from "../data/contribute";
+---
+<Base
+  title="Contribute — NORA Foundation"
+  description="Contribute to the Canon specification and Meridian-Canon reference implementation. Spec review, verifier implementations, reference-implementation internals, cryptography, documentation, and adversarial review."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Contribute"
+      as="h1"
+      title="Canon is CC0. Build against it without asking."
+      lede="The standard is published under CC0 1.0 Universal. No permission is required to implement an issuer, write a verifier, propose an amendment, or fork the reference implementation. We coordinate openly on GitHub and welcome contributions of every size."
+    />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">Contribution tracks.</h2>
+    <p class="text-ink-600 mb-10 max-w-2xl">Each track has an entry point. If you are unsure, open a discussion on the relevant repository or email us.</p>
+
+    <div class="grid md:grid-cols-2 gap-px bg-ink-200 border border-ink-200">
+      {contributorTracks.map(t => (
+        <div class="bg-white p-7">
+          <h3 class="font-serif text-xl text-ink-800 mb-3">{t.track}</h3>
+          <p class="text-sm text-ink-600 leading-relaxed mb-5">{t.summary}</p>
+          <div class="border-t border-ink-100 pt-4 space-y-2 text-xs">
+            <div>
+              <span class="font-mono text-ink-400 uppercase tracking-wider">Skills · </span>
+              <span class="text-ink-700">{t.skills}</span>
+            </div>
+            <div>
+              <span class="font-mono text-ink-400 uppercase tracking-wider">Start · </span>
+              <span class="text-ink-700">{t.entry}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Contributor expectations.</h2>
+    <div class="space-y-4 text-ink-700 leading-relaxed">
+      <p>Contributions are reviewed against the constitutional guarantees of Canon: public inspectability, falsifiability without NORA's cooperation, binary attestation status, and the integrity of the four-function chain. Amendments that weaken these guarantees are rejected regardless of authorship.</p>
+      <p>Licensing: all specification changes are CC0. Reference-implementation contributions are under a permissive open-source licence (MIT or Apache 2.0 depending on repository). By submitting a contribution, you assert the right to contribute it under those terms.</p>
+      <p>Security disclosures go to <a class="link-subtle" href="mailto:security@norafoundation.io">security@norafoundation.io</a>. Coordinated disclosure is welcomed and credited.</p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Open the repo. Open an issue. Open a PR."
+    body="The specification belongs to everyone. The reference implementation welcomes co-authors. Ecosystem verifiers are exactly what NORA exists to encourage."
+    primary={{ href: "https://github.com/NORA-BITSY", label: "GitHub · NORA-BITSY →" }}
+    secondary={{ href: "/volunteer", label: "Non-code roles" }}
+  />
+</Base>

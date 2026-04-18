@@ -1,0 +1,52 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { volunteerRoles } from "../data/volunteer";
+---
+<Base
+  title="Volunteer — NORA Foundation"
+  description="Non-code ways to support NORA Foundation: editorial, documentation, domain translation, design, outreach, operations, and governance."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="Volunteer"
+      as="h1"
+      title="The work needs more than code."
+      lede="A specification is as much an editorial and pedagogical project as it is a technical one. Volunteers bring subject-matter expertise, editorial judgement, design sensibility, and operational support that the foundation cannot do without."
+    />
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-2">Volunteer roles.</h2>
+    <p class="text-ink-600 mb-10 max-w-2xl">Time commitments are flexible. Tell us what you can offer and we will find a fit.</p>
+
+    <div class="grid md:grid-cols-2 gap-px bg-ink-200 border border-ink-200">
+      {volunteerRoles.map(r => (
+        <div class="bg-white p-7">
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <h3 class="font-serif text-xl text-ink-800">{r.role}</h3>
+            <span class="font-mono text-[10px] text-cardinal-700 bg-cardinal-50 px-2 py-1 uppercase tracking-wider whitespace-nowrap">{r.commitment}</span>
+          </div>
+          <p class="text-sm text-ink-600 leading-relaxed">{r.summary}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-4">What a first step looks like.</h2>
+    <ol class="space-y-5 text-ink-700 leading-relaxed">
+      <li class="grid grid-cols-[32px_1fr] gap-4"><span class="font-mono text-cardinal-600">1.</span><span>Email <a class="link-subtle" href="mailto:volunteer@norafoundation.io">volunteer@norafoundation.io</a> with a two-sentence introduction, the role range that fits, and approximate availability.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4"><span class="font-mono text-cardinal-600">2.</span><span>We respond within a week with a short first-task scoped to your availability, so we both learn whether the collaboration is a fit.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4"><span class="font-mono text-cardinal-600">3.</span><span>If it is, we add you to the public contributor list (only with your permission) and coordinate next work through issues or shared docs.</span></li>
+    </ol>
+  </section>
+
+  <CtaBand
+    title="Tell us how you'd like to help."
+    body="There is room for editorial, research, design, outreach, and operational contributions that can meaningfully change the trajectory of the work."
+    primary={{ href: "mailto:volunteer@norafoundation.io?subject=Volunteer%20interest", label: "volunteer@norafoundation.io →" }}
+    secondary={{ href: "/contribute", label: "Code contributions" }}
+  />
+</Base>

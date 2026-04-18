@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  body?: string;
+  primary?: { href: string; label: string };
+  secondary?: { href: string; label: string };
+}
+const { title, body, primary, secondary } = Astro.props;
+---
+<section class="bg-ink-900 text-white">
+  <div class="mx-auto max-w-6xl px-6 py-20 grid md:grid-cols-[1.5fr_1fr] gap-10 items-end">
+    <div>
+      <h2 class="font-serif text-3xl md:text-4xl leading-tight text-white">{title}</h2>
+      {body && <p class="mt-4 text-white/80 text-lg leading-relaxed max-w-2xl">{body}</p>}
+    </div>
+    <div class="flex flex-wrap gap-3 md:justify-end">
+      {primary && (
+        <a class="btn btn-primary !border-cardinal-500 hover:!bg-white hover:!text-cardinal-700 hover:!border-white" href={primary.href}>
+          {primary.label}
+        </a>
+      )}
+      {secondary && (
+        <a class="btn !bg-transparent !border-white/30 !text-white hover:!border-white hover:!text-white" href={secondary.href}>
+          {secondary.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,73 @@
+---
+import { primaryNav, actionNav } from "../data/nav";
+const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  if (href === "/") return current === "/";
+  return current === href || current.startsWith(href + "/");
+};
+---
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-ink-100">
+  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-baseline gap-2 no-underline group">
+      <span class="font-serif text-xl text-cardinal-600 font-semibold group-hover:text-cardinal-700 transition-colors">N</span>
+      <span class="font-serif text-base text-ink-800 tracking-tight group-hover:text-ink-900">NORA Foundation</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 text-sm" aria-label="Primary">
+      {primaryNav.map(item => (
+        <a
+          href={item.href}
+          class={`no-underline transition-colors ${
+            isActive(item.href) ? "text-cardinal-700 font-medium" : "text-ink-600 hover:text-cardinal-600"
+          }`}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="hidden md:flex items-center gap-3">
+      {actionNav.map((item, i) => (
+        <a
+          href={item.href}
+          class={i === 0 ? "btn btn-primary !py-2 !px-4 text-sm" : "btn !py-2 !px-4 text-sm"}
+        >{item.label}</a>
+      ))}
+    </div>
+
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-ink-700 p-2 -mr-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <line x1="3" y1="7" x2="21" y2="7" />
+        <line x1="3" y1="12" x2="21" y2="12" />
+        <line x1="3" y1="17" x2="21" y2="17" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-ink-100 bg-white">
+    <nav class="px-6 py-4 space-y-1" aria-label="Mobile">
+      {[...primaryNav, ...actionNav].map(item => (
+        <a
+          href={item.href}
+          class={`block py-2.5 no-underline ${
+            isActive(item.href) ? "text-cardinal-700 font-medium" : "text-ink-700"
+          }`}
+        >{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    btn?.setAttribute("aria-expanded", String(open));
+  });
+</script>

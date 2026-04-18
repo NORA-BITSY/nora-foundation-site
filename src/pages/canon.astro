@@ -1,0 +1,97 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CanonStages from "../components/CanonStages.astro";
+import PrincipleBlock from "../components/PrincipleBlock.astro";
+import CtaBand from "../components/CtaBand.astro";
+---
+<Base
+  title="Canon — The public standard for verifiable reasoning artifacts"
+  description="Canon is the NORA Foundation's open specification for attestations that any recipient can falsify without the issuer's cooperation. Dedicated to the public domain under CC0."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="The public standard · Canon v0.1.0 · draft-rfc"
+      as="h1"
+      title="A standard for reasoning artifacts that recipients can falsify without you."
+      lede="Canon specifies the structure of a reasoning artifact — the file format, the field semantics, and the falsification protocol — such that any recipient, using only the artifact and ordinary network access, can verify or falsify it without any cooperation from the issuer."
+    />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-10">The four-stage chain.</h2>
+    <CanonStages compact={false} />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="font-serif text-xl text-ink-800 mb-4">Canon specifies</h3>
+        <ul class="space-y-2 text-ink-600">
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> JSON shape and required fields of every block</li>
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> Hash algorithm (SHA-256) and canonicalization (RFC 8785)</li>
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> Signature algorithm (Ed25519 · RFC 8032)</li>
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> Seven-step falsification protocol</li>
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> Inference-type vocabulary</li>
+          <li class="flex gap-3"><span class="text-cardinal-600 font-mono">▸</span> Versioning and amendment discipline</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-serif text-xl text-ink-800 mb-4">Canon does not specify</h3>
+        <ul class="space-y-2 text-ink-600">
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> Internal operations of any stage</li>
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> Which challenge types are domain-required</li>
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> Storage or transport after issuance</li>
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> User interfaces for walking backward</li>
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> Choice of adversary models, key-storage hardware</li>
+          <li class="flex gap-3"><span class="text-ink-400 font-mono">▸</span> Any particular issuer's internal architecture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <PrincipleBlock
+      principle="Canon defines the artifact. Everything else is out of scope — deliberately."
+      source="CANON.md §6"
+    />
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="font-serif text-3xl text-ink-800 mb-6">Falsification protocol.</h2>
+    <p class="text-ink-600 leading-relaxed mb-8 max-w-3xl">
+      A recipient possessing an Attestation and ordinary network access performs seven steps to reach a definitive verdict:
+    </p>
+    <ol class="space-y-4 text-ink-700">
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">1.</span><span>Fetch the public key. Verify its fingerprint matches <code>seal.public_key_fingerprint</code>.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">2.</span><span>Verify the Ed25519 signature against the UTF-8 bytes of <code>chain_hash</code>.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">3.</span><span>Recompute <code>chain_hash</code> by re-serializing the Attestation without <code>seal</code> per RFC 8785, then SHA-256.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">4.</span><span>For every witness entry, retrieve the content, re-hash, compare.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">5.</span><span>Confirm every claim's <code>supports</code> resolves. No circular references.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">6.</span><span>Confirm every challenge's <code>targets</code> resolves.</span></li>
+      <li class="grid grid-cols-[32px_1fr] gap-4 items-baseline"><span class="font-mono text-cardinal-600">7.</span><span>Review <code>coverage.declined</code>. Apply the recipient's own judgement to the stated scope of un-challenged material.</span></li>
+    </ol>
+    <p class="mt-8 text-ink-600 leading-relaxed max-w-3xl">
+      If any of steps 1–6 fail, the Attestation is invalid — structurally, cryptographically, or referentially — regardless of appearance. Step 7 is the recipient's substantive judgement. Canon requires that the honest inventory be present, not that the recipient find it acceptable.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16 bg-ink-50 -mx-0 md:mx-6 my-16 border border-ink-200 p-8 md:p-12">
+    <div class="font-mono text-xs text-cardinal-600 uppercase tracking-wider mb-3">Implementation-neutral</div>
+    <p class="text-ink-700 leading-relaxed text-lg">
+      Any implementation — NORA itself, a competing verifier, or a recipient's own validator — may read or emit Attestations conforming to Canon without permission. The specification is dedicated to the public domain under CC0 1.0 Universal. Amendments are proposed via pull request and must preserve the constitutional guarantees: public inspectability, falsifiability without the issuer's cooperation, binary attestation status, and integrity of the four-function chain.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href="https://github.com/NORA-BITSY/nora-canon/blob/main/CANON.md" target="_blank" rel="noopener">Read CANON.md</a>
+      <a class="btn" href="https://github.com/NORA-BITSY/nora-canon/blob/main/canon.schema.json" target="_blank" rel="noopener">JSON schema</a>
+      <a class="btn" href="https://github.com/NORA-BITSY/nora-canon" target="_blank" rel="noopener">Repository</a>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Help bring Canon to v1.0."
+    body="Draft-rfc is open for amendment. We welcome specification review, verifier implementations in new languages, and adversarial analysis of the protocol."
+    primary={{ href: "/contribute", label: "Contribute to the spec →" }}
+    secondary={{ href: "/donate", label: "Support the work" }}
+  />
+</Base>

@@ -1,0 +1,64 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import PrincipleBlock from "../components/PrincipleBlock.astro";
+import CtaBand from "../components/CtaBand.astro";
+---
+<Base
+  title="About — NORA Foundation"
+  description="About NORA Foundation — origin, philosophy, and organizational status. Public-interest infrastructure for verifiable reasoning."
+>
+  <section class="mx-auto max-w-4xl px-6 pt-20 pb-10 md:pt-28">
+    <SectionHeader
+      eyebrow="About"
+      as="h1"
+      title="A foundation for verifiable reasoning."
+      lede="NORA Foundation publishes Canon, builds its reference implementation, and supports the ecosystem of independent verifiers that give the standard its meaning. Our work is technical, public-interest, and long-horizon."
+    />
+  </section>
+
+  <section class="mx-auto max-w-3xl px-6 py-16 space-y-8 text-lg text-ink-700 leading-relaxed">
+    <h2 class="font-serif text-3xl text-ink-800">Origin.</h2>
+    <p>
+      NORA emerged from a concrete, high-stakes use case that exposed a broader public need. A large, heterogeneous personal-data archive had to be searched, interpreted, and synthesized under adversarial review — a setting where every retrieval decision, every inferred claim, and every synthesized finding had to be defensible to parties who had no reason to cooperate with the system producing the output.
+    </p>
+    <p>
+      That stress test was the catalyst. The problem it revealed is general: modern AI systems emit reasoning artifacts — retrievals, summaries, findings, briefs — that recipients are expected to rely on without any structured means of auditing them independently. Nothing in the field met the bar that evidentiary review demands.
+    </p>
+
+    <PrincipleBlock
+      principle="A real use case revealed the problem. The problem is much larger than any one case. NORA turns the lesson into open infrastructure."
+    />
+
+    <h2 class="font-serif text-3xl text-ink-800 pt-4">Philosophy.</h2>
+    <p>
+      Verifiability is a public-interest property. A specification that only one party can implement or one party's verifier can check is not verifiable in any meaningful sense — the issuer becomes a trusted third party, and the recipient gains nothing over unattested output. Canon is therefore published under CC0 with no central authority, no licensing regime, and no coordination requirement.
+    </p>
+    <p>
+      NORA's role is custodial. We write the spec honestly, including its limits. We build a reference implementation that exposes the spec's surface area. We fund adversarial review so the spec survives attack. We grant to outside implementers so the ecosystem is plural. When the standard matures beyond what NORA can steward alone, governance widens.
+    </p>
+
+    <h2 class="font-serif text-3xl text-ink-800 pt-4">Organizational status.</h2>
+    <p>
+      NORA Foundation is a new organization in active formation. The specification is published (draft-rfc v0.1.0). The reference implementation is under construction. Fiscal sponsorship with a 501(c)(3) host is being pursued; until it is finalized in writing, we do not represent donations as tax-deductible. We expect to publish our first annual transparency report once a full fiscal year of activity is on the books.
+    </p>
+    <p>
+      For institutional funders, legal counsel, and journalists who need more formal documentation than this page provides, please <a class="link-subtle" href="mailto:hello@norafoundation.io">contact us directly</a>.
+    </p>
+
+    <h2 class="font-serif text-3xl text-ink-800 pt-4">What “verifiable reasoning” means.</h2>
+    <p>
+      A reasoning artifact is verifiable when any recipient, using only the artifact plus ordinary network access, can confirm or refute its integrity without cooperation from the issuer. The artifact must carry its own witness chain, its own typed inferences, its own acknowledged gaps, its own adversarial challenges, and a cryptographic seal that commits the issuer to all of the above. Canon specifies exactly this artifact, and exactly this verification protocol.
+    </p>
+    <p>
+      Verifiability is not correctness. Canon does not guarantee that a claim is correct — the recipient still exercises judgement. It guarantees that the full reasoning chain, including what the issuer chose not to examine, is inspectable.
+    </p>
+  </section>
+
+  <CtaBand
+    title="Questions about the foundation."
+    body="We respond to inquiries from funders, journalists, researchers, counsel, and engineers. Please tell us who you are, why you are reaching out, and on what timeline."
+    primary={{ href: "/contact", label: "Contact us →" }}
+    secondary={{ href: "/mission", label: "The mission" }}
+  />
+</Base>

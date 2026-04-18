@@ -1,23 +1,235 @@
 ---
 import Base from "../layouts/Base.astro";
-import Hero from "../components/Hero.astro";
-import Problem from "../components/Problem.astro";
-import CanonExplainer from "../components/CanonExplainer.astro";
-import Meridian from "../components/Meridian.astro";
-import Roadmap from "../components/Roadmap.astro";
-import Contribute from "../components/Contribute.astro";
-import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import CanonStages from "../components/CanonStages.astro";
+import PathCard from "../components/PathCard.astro";
+import RoadmapTimeline from "../components/RoadmapTimeline.astro";
+import CtaBand from "../components/CtaBand.astro";
 ---
 <Base>
-  <Hero />
-  <hr class="rule mx-6" />
-  <Problem />
-  <hr class="rule mx-6" />
-  <CanonExplainer />
-  <hr class="rule mx-6" />
-  <Meridian />
-  <hr class="rule mx-6" />
-  <Roadmap />
-  <Contribute />
-  <Footer />
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-6 pt-20 pb-20 md:pt-32 md:pb-28">
+    <div class="eyebrow mb-6">NORA Foundation · Canon v0.1.0 · draft-rfc</div>
+    <h1 class="font-serif text-5xl md:text-7xl leading-[1.04] tracking-tight text-ink-800 max-w-5xl">
+      Verifiable reasoning.<br />
+      <span class="text-cardinal-600">Public infrastructure.</span>
+    </h1>
+    <p class="mt-8 max-w-2xl text-xl leading-relaxed text-ink-600">
+      NORA Foundation publishes <strong>Canon</strong> — an open standard for the artifact an AI system issues when a claim has passed through Witness, Findings, Refutation, and Seal. Any recipient can verify a Canon attestation without trusting the issuer.
+    </p>
+
+    <div class="mt-12 flex flex-wrap gap-3">
+      <a class="btn btn-primary" href="/canon">Read the Canon →</a>
+      <a class="btn" href="/donate">Support the foundation</a>
+      <a class="btn" href="https://github.com/NORA-BITSY" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-sm max-w-3xl">
+      <div>
+        <div class="font-mono text-xs text-ink-400 uppercase tracking-wider">Licence</div>
+        <div class="text-ink-700 mt-1">CC0 1.0 Universal</div>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-ink-400 uppercase tracking-wider">Signature</div>
+        <div class="text-ink-700 mt-1">Ed25519 · RFC 8032</div>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-ink-400 uppercase tracking-wider">Canonical&shy;ization</div>
+        <div class="text-ink-700 mt-1">JCS · RFC 8785</div>
+      </div>
+      <div>
+        <div class="font-mono text-xs text-ink-400 uppercase tracking-wider">Status</div>
+        <div class="text-ink-700 mt-1">Draft-RFC · open for PR</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- ORIGIN → GENERAL PROBLEM -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§1 — Why this exists"
+      title="A real use case revealed a general problem."
+      lede="NORA was forged in a demanding real-world evidentiary context — a setting where retrieval, interpretation, and provenance all had to be audited by someone other than the system that produced them. That pressure exposed a problem far larger than any one case: modern AI systems emit output that recipients cannot independently verify."
+    />
+
+    <div class="mt-14 grid md:grid-cols-3 gap-8 max-w-5xl">
+      <div>
+        <div class="font-mono text-sm text-cardinal-600 mb-2">retrieval without reasoning</div>
+        <p class="text-ink-600 leading-relaxed">
+          A vector database returns a ranked list. It cannot explain why each result was ranked where it was, what it missed, or how the answer would change under a slightly different query.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-sm text-cardinal-600 mb-2">generation without provenance</div>
+        <p class="text-ink-600 leading-relaxed">
+          A language model produces plausible text. It does not produce a record of which passages it relied on, which inference types were applied, or which facts were asserted without support.
+        </p>
+      </div>
+      <div>
+        <div class="font-mono text-sm text-cardinal-600 mb-2">signatures without binding</div>
+        <p class="text-ink-600 leading-relaxed">
+          A digitally-signed document proves a file was signed. It does not commit the issuer to a specific reasoning chain, an acknowledged set of gaps, or a survived adversarial challenge.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-14 max-w-3xl text-lg text-ink-600 leading-relaxed">
+      The problem is structural, not cosmetic. It applies wherever a party must rely on an AI system's output without being able to cooperate with — or trust — the system that produced it: evidentiary review, investigative journalism, academic research over private archives, compliance and audit, records-intensive knowledge work. NORA turns the lesson of a concrete case into public infrastructure.
+    </p>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- WHAT NORA DOES -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§2 — What NORA does"
+      title="Publish the standard. Build the implementation. Support the ecosystem."
+    />
+
+    <div class="mt-14 grid md:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+      <div class="bg-white p-8">
+        <div class="font-serif text-2xl text-cardinal-600 mb-3">01</div>
+        <h3 class="font-serif text-xl text-ink-800 mb-3">Publish Canon</h3>
+        <p class="text-sm text-ink-600 leading-relaxed">
+          An open, implementation-neutral specification for verifiable reasoning artifacts. Published under CC0. Amendments by public pull request. No permission required to build against it.
+        </p>
+      </div>
+      <div class="bg-white p-8">
+        <div class="font-serif text-2xl text-cardinal-600 mb-3">02</div>
+        <h3 class="font-serif text-xl text-ink-800 mb-3">Build Meridian-Canon</h3>
+        <p class="text-sm text-ink-600 leading-relaxed">
+          The reference implementation — a system that ingests heterogeneous archives, normalizes them, enriches them with a local language model, challenges its own conclusions, and emits sealed, verifiable attestations.
+        </p>
+      </div>
+      <div class="bg-white p-8">
+        <div class="font-serif text-2xl text-cardinal-600 mb-3">03</div>
+        <h3 class="font-serif text-xl text-ink-800 mb-3">Support the ecosystem</h3>
+        <p class="text-sm text-ink-600 leading-relaxed">
+          Independent verifiers. Adversarial review. Domain-specific challenge vocabularies. Grants to outside implementers. The standard is only meaningful if many parties can issue and verify under it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- CANON STAGES -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§3 — The Canon"
+      title="Four stages. One signed artifact."
+      lede="A NORA Attestation is a JSON document produced when a claim has passed through four functions in sequence. The structure is public, implementation-neutral, and inspectable by any recipient without the issuer's cooperation."
+    />
+
+    <div class="mt-14">
+      <CanonStages compact={true} />
+    </div>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a class="btn" href="/canon">About the Canon →</a>
+      <a class="btn" href="https://github.com/NORA-BITSY/nora-canon/blob/main/CANON.md" target="_blank" rel="noopener">Read CANON.md</a>
+      <a class="btn" href="https://github.com/NORA-BITSY/nora-canon/blob/main/canon.schema.json" target="_blank" rel="noopener">JSON schema</a>
+    </div>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- MERIDIAN-CANON -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§4 — The reference implementation"
+      title="Meridian-Canon."
+      lede="Canon-conformant infrastructure for large, heterogeneous archives where retrieval, interpretation, and provenance must all be auditable. First developed under a demanding real-world archival and evidentiary workload; architected from the beginning to generalize beyond it."
+    />
+
+    <div class="mt-12 grid md:grid-cols-2 gap-10">
+      <div>
+        <h3 class="font-serif text-xl text-ink-800 mb-4">What it does</h3>
+        <ol class="space-y-3 text-ink-600">
+          <li class="flex gap-3"><span class="font-mono text-cardinal-600 shrink-0">1.</span> Ingests heterogeneous sources into one database with cryptographic hashes and chain of custody.</li>
+          <li class="flex gap-3"><span class="font-mono text-cardinal-600 shrink-0">2.</span> Extracts structured claims per document via a local language model, with explicit inference types and acknowledged gaps.</li>
+          <li class="flex gap-3"><span class="font-mono text-cardinal-600 shrink-0">3.</span> Challenges every claim via a five-stage adversarial harness before sealing.</li>
+          <li class="flex gap-3"><span class="font-mono text-cardinal-600 shrink-0">4.</span> Answers natural-language queries with sealed <code>SearchAttestation</code>s. Synthesizes <code>BriefAttestation</code>s for broader evidentiary or editorial products.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3 class="font-serif text-xl text-ink-800 mb-4">Use-case classes</h3>
+        <ul class="space-y-2 text-ink-600 text-sm">
+          <li>· Legal review and evidence preparation</li>
+          <li>· Investigative journalism with large source archives</li>
+          <li>· Academic research on private corpora</li>
+          <li>· Compliance, audit, and regulatory review</li>
+          <li>· Institutional and personal records management</li>
+          <li>· FOIA and transparency work</li>
+        </ul>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="btn btn-primary" href="/meridian-canon">About Meridian-Canon →</a>
+          <a class="btn" href="/meridian-canon-executive-summary.pdf">Executive summary (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- WHO THIS IS FOR -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§5 — Who this is for"
+      title="Five ways to engage."
+    />
+
+    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+      <PathCard eyebrow="Donors" title="Support the work"
+        body="Fund specification drafting, reference implementations, verifier tooling, adversarial review, and ecosystem grants. Every line of support is traceable to a category of work."
+        cta={{ href: "/donate", label: "Donate" }}
+      />
+      <PathCard eyebrow="Institutional funders" title="Grants and partnerships"
+        body="For foundations, labs, civic-tech funders, and corporate philanthropy programs. We welcome multi-year structured support for public-interest infrastructure."
+        cta={{ href: "/partners", label: "Partner with us" }}
+      />
+      <PathCard eyebrow="Contributors" title="Build the ecosystem"
+        body="Write a verifier in your language. Propose amendments to the draft spec. Contribute reference-implementation modules. No coordination required."
+        cta={{ href: "/contribute", label: "Contribute" }}
+      />
+      <PathCard eyebrow="Volunteers" title="Non-code roles"
+        body="Editorial, documentation, design, outreach, operations, domain translation. Subject-matter expertise across law, journalism, audit, and research is especially valued."
+        cta={{ href: "/volunteer", label: "Volunteer" }}
+      />
+      <PathCard eyebrow="Researchers & journalists" title="Adopt the standard"
+        body="If your work requires reasoning outputs that survive third-party audit — and your audience must verify without trusting you — Canon is for you."
+        cta={{ href: "/meridian-canon", label: "See the implementation" }}
+      />
+      <PathCard eyebrow="Legal practitioners" title="Flagship use case"
+        body="Evidentiary review is the most demanding proving ground for verifiable reasoning. We welcome pilot conversations, amicus collaborations, and practitioner review of the standard."
+        cta={{ href: "/partners", label: "Start a conversation" }}
+      />
+    </div>
+  </section>
+
+  <hr class="border-ink-200" />
+
+  <!-- ROADMAP -->
+  <section class="mx-auto max-w-6xl px-6 py-24">
+    <SectionHeader
+      eyebrow="§6 — Current status"
+      title="Where we are."
+      lede="We publish roadmap honestly. Status language on this site is kept current with the actual state of the work."
+    />
+    <div class="mt-12">
+      <RoadmapTimeline />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Help us build public infrastructure for verifiable reasoning."
+    body="Canon is published. Meridian-Canon is under active construction. Verifier tooling is next. The work is in the open, and it needs support."
+    primary={{ href: "/donate", label: "Support the foundation →" }}
+    secondary={{ href: "/contribute", label: "Contribute code" }}
+  />
 </Base>

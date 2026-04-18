@@ -1,0 +1,17 @@
+---
+interface Props {
+  principle: string;
+  source?: string;
+}
+const { principle, source } = Astro.props;
+---
+<figure class="border-l-4 border-cardinal-600 pl-6 py-2 max-w-3xl">
+  <blockquote class="font-serif text-2xl md:text-3xl leading-snug text-ink-800">
+    {principle}
+  </blockquote>
+  {source && (
+    <figcaption class="mt-4 font-mono text-xs text-ink-500 uppercase tracking-wider">
+      — {source}
+    </figcaption>
+  )}
+</figure>
