@@ -1,0 +1,61 @@
+---
+---
+<section id="meridian" class="mx-auto max-w-5xl px-6 py-24">
+  <div class="section-label mb-4">§3 — The first implementation</div>
+  <h2 class="font-serif text-4xl md:text-5xl leading-tight max-w-3xl">
+    Meridian-Canon.
+  </h2>
+  <p class="mt-6 max-w-2xl text-lg text-ink-600 leading-relaxed">
+    A Canon-conformant architecture for a personal digital archive — every text message, email, document, voicemail, and file a person possesses — ingested, normalized, enriched, indexed, and attested. Every retrieval is a self-verifying JSON artifact.
+  </p>
+
+  <div class="mt-12 grid md:grid-cols-2 gap-10">
+    <div>
+      <h3 class="font-serif text-xl text-ink-800 mb-4">What it does</h3>
+      <ol class="space-y-3 text-ink-600">
+        <li class="flex gap-3">
+          <span class="font-mono text-cardinal-600 shrink-0">1.</span>
+          <span>Ingests every source — phone backup, Gmail, iCloud, Dropbox, local archive — into one SQLite database with cryptographic hashes.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="font-mono text-cardinal-600 shrink-0">2.</span>
+          <span>Reads every document with a local language model, extracting structured claims with explicit inference types and acknowledged gaps.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="font-mono text-cardinal-600 shrink-0">3.</span>
+          <span>Challenges its own conclusions via five adversarial tests before sealing anything.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="font-mono text-cardinal-600 shrink-0">4.</span>
+          <span>Answers natural-language questions with sealed <code>SearchAttestation</code>s. Produces <code>BriefAttestation</code>s for evidentiary synthesis.</span>
+        </li>
+      </ol>
+    </div>
+
+    <div>
+      <h3 class="font-serif text-xl text-ink-800 mb-4">Scale</h3>
+      <dl class="space-y-3 text-ink-600">
+        <div class="grid grid-cols-[auto_1fr] gap-x-4">
+          <dt class="font-mono text-sm text-ink-500">corpus</dt>
+          <dd>~3×10<sup>5</sup> primary documents</dd>
+        </div>
+        <div class="grid grid-cols-[auto_1fr] gap-x-4">
+          <dt class="font-mono text-sm text-ink-500">vectors</dt>
+          <dd>~5×10<sup>5</sup>–10<sup>6</sup> after chunking</dd>
+        </div>
+        <div class="grid grid-cols-[auto_1fr] gap-x-4">
+          <dt class="font-mono text-sm text-ink-500">compute</dt>
+          <dd>~8 dev-days + ~$10 GPU time</dd>
+        </div>
+        <div class="grid grid-cols-[auto_1fr] gap-x-4">
+          <dt class="font-mono text-sm text-ink-500">output</dt>
+          <dd>one SQLite file · portable · court-admissible</dd>
+        </div>
+      </dl>
+
+      <div class="mt-8">
+        <a class="btn btn-primary" href="/meridian-canon-executive-summary.pdf">Read the exec summary (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>

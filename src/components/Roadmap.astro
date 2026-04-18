@@ -1,0 +1,32 @@
+---
+const items = [
+  { tag: "shipped", date: "Apr 2026", title: "Canon v0.1.0 draft-rfc published", note: "Specification, JSON schema, CC0 licence, open for PR at github.com/NORA-BITSY/nora-canon." },
+  { tag: "in progress", date: "Q2 2026", title: "Meridian-Canon reference implementation", note: "Phases A–H: foundation, witness wrapping, findings extractors, refutation harness, indexing, search and brief emission, standalone verifier." },
+  { tag: "next", date: "Q3 2026", title: "Canon v1.0 ratification", note: "Stable specification. Reference verifier as npm + pypi packages. Multi-language canonicalization cross-validation." },
+  { tag: "future", date: "2026+", title: "Federation and tooling", note: "Multi-issuer registries. Hardware-key support (HSM, YubiKey). Domain-specific challenge vocabularies. Editor integrations." },
+];
+---
+<section id="roadmap" class="mx-auto max-w-5xl px-6 py-24">
+  <div class="section-label mb-4">§4 — Where we are</div>
+  <h2 class="font-serif text-4xl md:text-5xl leading-tight">Roadmap.</h2>
+
+  <div class="mt-12 border-t border-ink-200">
+    {items.map((it) => (
+      <div class="grid md:grid-cols-[140px_120px_1fr] gap-x-6 gap-y-2 py-6 border-b border-ink-200">
+        <div>
+          <span class={`inline-block px-2 py-0.5 font-mono text-xs uppercase tracking-wider
+            ${it.tag === 'shipped' ? 'bg-cardinal-600 text-white' :
+              it.tag === 'in progress' ? 'bg-cardinal-100 text-cardinal-700' :
+              'bg-ink-100 text-ink-500'}`}>
+            {it.tag}
+          </span>
+        </div>
+        <div class="font-mono text-sm text-ink-500 pt-0.5">{it.date}</div>
+        <div>
+          <div class="font-serif text-lg text-ink-800">{it.title}</div>
+          <div class="text-ink-600 mt-1 text-sm leading-relaxed">{it.note}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
