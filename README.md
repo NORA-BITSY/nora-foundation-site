@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# nora-foundation-site
 
-```sh
-npm create astro@latest -- --template minimal
+The NORA Foundation website — <https://norafoundation.io>
+
+Landing page for the [Canon specification](https://github.com/NORA-BITSY/nora-canon) and the Meridian-Canon reference implementation.
+
+## Stack
+
+- [Astro](https://astro.build) 6 (static output)
+- [Tailwind CSS](https://tailwindcss.com) v4
+- Deployed to Vercel
+
+## Local development
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # output → dist/
+npm run preview    # serve dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+  pages/index.astro        single-page layout
+  layouts/Base.astro       meta tags, fonts
+  components/
+    Hero.astro
+    Problem.astro
+    CanonExplainer.astro   W → F → R → S explainer
+    Meridian.astro         reference implementation
+    Roadmap.astro
+    Contribute.astro       funding rails
+    Footer.astro
+  styles/global.css        Tailwind @theme tokens
+public/
+  favicon.svg
+  meridian-canon-executive-summary.pdf
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## TODO before launch
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- [ ] Enable GitHub Sponsors on the `NORA-BITSY` org (link is live; payout must be configured).
+- [ ] Create Open Collective account; replace placeholder URL in `Contribute.astro`.
+- [ ] Create Stripe Payment Link; replace placeholder URL in `Contribute.astro`.
+- [ ] Generate and publish BTC and ETH addresses; replace placeholders in `Contribute.astro`.
+- [ ] Register `norafoundation.io` and point DNS at Vercel.
+- [ ] Configure `hello@norafoundation.io` (forwarding from ProtonMail / Google Workspace / Fastmail).
+- [ ] Add Open Graph cover image at `public/og.png` (1200×630).
+- [ ] Enable Vercel Analytics (privacy-respecting; no cookies).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Licence
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+CC0 1.0 Universal — same as the Canon specification. Text and code are in the public domain.
